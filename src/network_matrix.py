@@ -61,7 +61,7 @@ class Network(object):
 					j, self.evaluate(test_data), n_test, ))
 			else:
 				print("Epoch {0} complete".format(
-					j)
+					j))
 			
 	def update_mini_batch(self,mini_batch,eta):
 		"""
