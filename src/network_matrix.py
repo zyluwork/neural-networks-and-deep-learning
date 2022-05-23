@@ -40,29 +40,29 @@ class Network(object):
 		data after each epoch, and partial progress printed out. This is useful for tracking
 		process, but slows things down substantially.
 		"""
-        if test_data: n_test = len(test_data)
-        self.mini_batch_size = mini_batch_size  # to be used in other functions
-        n = len(training_data)
-        start = time.time()  # begin timer
-        for j in range(epochs):
-            random.shuffle(training_data)
-            mini_batches = [
-                training_data[k:k+mini_batch_size]
-                for k in range(0, n, mini_batch_size)]
-            mini_batches_X, mini_batches_Y = [], []
-            for batch in mini_batches:
-                mini_batches_X.append(np.column_stack(tuple([batch[k][0]
-                    for k in range(mini_batch_size)])))
-                mini_batches_Y.append(np.column_stack(tuple([batch[k][1]
-                    for k in range(mini_batch_size)])))
-            for X, Y in zip(mini_batches_X, mini_batches_Y):
-                self.update_mini_batch(X, Y, eta)
-            if test_data:
-                print("Epoch {0}: {1} / {2}, elapsed time: {3:.2f}s".format(
-                    j, self.evaluate(test_data), n_test, time.time()-start))
-            else:
-                print("Epoch {0} complete, elapsed time: {1:.2f}s".format(
-                    j, time.time()-start))
+		if test_data: n_test = len(test_data)
+		self.mini_batch_size = mini_batch_size  # to be used in other functions
+		n = len(training_data)
+		start = time.time()  # begin timer
+		for j in range(epochs):
+			random.shuffle(training_data)
+			mini_batches = [
+				training_data[k:k+mini_batch_size]
+				for k in range(0, n, mini_batch_size)]
+			mini_batches_X, mini_batches_Y = [], []
+			for batch in mini_batches:
+				mini_batches_X.append(np.column_stack(tuple([batch[k][0]
+					for k in range(mini_batch_size)])))
+				mini_batches_Y.append(np.column_stack(tuple([batch[k][1]
+					for k in range(mini_batch_size)])))
+			for X, Y in zip(mini_batches_X, mini_batches_Y):
+				self.update_mini_batch(X, Y, eta)
+			if test_data:
+				print("Epoch {0}: {1} / {2}, elapsed time: {3:.2f}s".format(
+					j, self.evaluate(test_data), n_test, time.time()-start))
+			else:
+				print("Epoch {0} complete, elapsed time: {1:.2f}s".format(
+					j, time.time()-start))
 			
 	def update_mini_batch(self,mini_batch,eta):
 		"""
