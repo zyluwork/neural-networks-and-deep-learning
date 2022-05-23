@@ -43,7 +43,6 @@ class Network(object):
 		if test_data: n_test = len(test_data)
 		self.mini_batch_size = mini_batch_size  # to be used in other functions
 		n = len(training_data)
-		start = time.time()  # begin timer
 		for j in range(epochs):
 			random.shuffle(training_data)
 			mini_batches = [
@@ -58,11 +57,11 @@ class Network(object):
 			for X, Y in zip(mini_batches_X, mini_batches_Y):
 				self.update_mini_batch(X, Y, eta)
 			if test_data:
-				print("Epoch {0}: {1} / {2}, elapsed time: {3:.2f}s".format(
-					j, self.evaluate(test_data), n_test, time.time()-start))
+				print("Epoch {0}: {1} / {2}".format(
+					j, self.evaluate(test_data), n_test, ))
 			else:
-				print("Epoch {0} complete, elapsed time: {1:.2f}s".format(
-					j, time.time()-start))
+				print("Epoch {0} complete".format(
+					j)
 			
 	def update_mini_batch(self,mini_batch,eta):
 		"""
