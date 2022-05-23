@@ -40,8 +40,8 @@ class Network(object):
 		data after each epoch, and partial progress printed out. This is useful for tracking
 		process, but slows things down substantially.
 		"""
-
-		if test_data: n_test = len(test_data)
+		if test_data: 
+			n_test = len(test_data)
         self.mini_batch_size = mini_batch_size  # to be used in other functions
         n = len(training_data)
         start = time.time()  # begin timer
